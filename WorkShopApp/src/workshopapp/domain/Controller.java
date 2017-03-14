@@ -3,12 +3,10 @@ package workshopapp.domain;
 public class Controller {
 	
 	private WorkshopList workshoplist;
-	private ParticipantList participantlist;
 	
 	
 	public Controller(){
 		workshoplist=new WorkshopList();
-		participantlist=new ParticipantList();
 	}
 	
 	public Workshop addWorkshop(String name,String date){
@@ -22,10 +20,19 @@ public class Controller {
 		return workshoplist.searchWorkshop(name);
 	}
 	
-	public void registerParticipant(String name,String IcNo){
+	public void registerParticipant(String name,String IcNo,Workshop workshop){
 		Participant participant=new Participant(name,IcNo);
-		participantlist.addParticipanttoList(participant);
+		workshop.addPartipantToThisWorkshop(participant);
 	}
+	
+	public ParticipantList getParticipantList(Workshop workshop){
+		return workshop.getParticipantList();
+	}
+	
+	public Workshop getWorkshop(int i){
+		return workshoplist.getSelectedWorkshop(i);
+	}
+	
 
 
 }

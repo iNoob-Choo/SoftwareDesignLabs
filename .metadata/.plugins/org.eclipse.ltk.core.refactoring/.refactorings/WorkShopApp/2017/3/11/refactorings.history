@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;workshopapp.domain.Workshop.workshopSize&apos; in &apos;workshopapp.domain.Workshop&apos;&#x0D;&#x0A;- Original project: &apos;WorkShopApp&apos;&#x0D;&#x0A;- Original element: &apos;workshopapp.domain.Workshop.workshopSize&apos;&#x0D;&#x0A;- Getter method name: &apos;getWorkshopSize&apos;&#x0D;&#x0A;- Setter method name: &apos;setWorkshopSize&apos;&#x0D;&#x0A;- Field visibility: &apos;public&apos;&#x0D;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;workshopSize&apos;" flags="589830" getter="getWorkshopSize" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;workshopapp.domain{Workshop.java[Workshop^workshopSize" insertion="4" setter="setWorkshopSize" stamp="1489457734723" version="1.0" visibility="1"/>
+</session>

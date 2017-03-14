@@ -12,6 +12,17 @@ public class ParticipantList {
 	
 	public void addParticipanttoList(Participant participant){
 		participantlist.add(participant);
+		
+	}
+	
+	public int getParticipantListSize(){
+		int size=participantlist.size();
+		return size;
+	}
+	
+	public Participant getParticipant(int i){
+		Participant participant=participantlist.get(i);
+		return participant;
 	}
 	
 }

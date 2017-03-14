@@ -18,7 +18,6 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 	private JLabel lblWorkshopdate;
 	private JLabel lblParticipantIC;
 	private JLabel lblWorkshopSelected;
-	private JLabel lblTheWorkshopSelected;
 	
 	//Text Fields for Workshop
 	private JTextField txtWorkshopname;
@@ -33,6 +32,7 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 	private JButton btnAddWorkshop;
 	private JButton btnSearchWorkshop;
 	private JButton btnSelectWorkshop;
+	private JButton btnViewParticipant;
 	
 	//Combo Box
 	private JComboBox<String> WorkshopComboBox;
@@ -57,6 +57,7 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 		btnAddWorkshop=new JButton("Add Workshop");
 		btnSearchWorkshop=new JButton("Search Workshop");
 		btnSelectWorkshop=new JButton("Select Workshop");
+		btnViewParticipant=new JButton("View Participant");
 		
 		WorkshopComboBox=new JComboBox<String>();
 		
@@ -93,13 +94,14 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 				 GroupLayout.Alignment.LEADING)
 				 .addComponent(btnAddWorkshop)
 				 .addComponent(btnSelectWorkshop)
+				 .addComponent(btnViewParticipant)
 				 .addComponent(btnRegisterParticipant))
  
 				 );
 		
 		// Make both buttons same size
 		 layout.linkSize(SwingConstants.HORIZONTAL, btnAddWorkshop, btnSearchWorkshop
-				 ,btnRegisterParticipant,btnSelectWorkshop); 
+				 ,btnRegisterParticipant,btnSelectWorkshop,btnViewParticipant); 
 		 layout.linkSize(SwingConstants.HORIZONTAL, WorkshopComboBox,txtParticipantname); 
 		
 		// Make vertical grouping.
@@ -125,11 +127,12 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 		 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 				.addComponent(lblParticipantname)
 				.addComponent(txtParticipantname)	 
-				 .addComponent(btnRegisterParticipant)
+				 .addComponent(btnViewParticipant)
 				 )//
 		 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 				 .addComponent(lblParticipantIC)
-				 .addComponent(txtParticipantIC)	
+				 .addComponent(txtParticipantIC)
+				 .addComponent(btnRegisterParticipant)
 				 )
 				 
 		 ); //end of set vertical
@@ -138,6 +141,9 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 		// Add button listeners for button event handling.
 		 btnAddWorkshop.addActionListener(this);
 		 btnSearchWorkshop.addActionListener(this);
+		 btnViewParticipant.addActionListener(this);
+		 btnSelectWorkshop.addActionListener(this);
+		 btnRegisterParticipant.addActionListener(this);
 		 
 		// Finalize layout and set window parameters.
 		 this.setContentPane(content);
@@ -177,31 +183,56 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 			
 			if(workshop!=null){
 				JOptionPane.showMessageDialog(this,"Workshop is on: "+workshop.getDate());
-				lblTheWorkshopSelected.setText(workshop.getName());
+
 			}else{
 				JOptionPane.showMessageDialog(this,"Workshop doesnt exist yet");
 			}
 		  }//end of search if
+			
 		}else if(event.getSource()==btnSelectWorkshop){
-			Workshop selectedWorkshop=(Workshop) WorkshopComboBox.getSelectedItem();
+			int IndexofWorkshop=WorkshopComboBox.getSelectedIndex();
+			Workshop selectedWorkshop=controller.getWorkshop(IndexofWorkshop);	
+			if(selectedWorkshop==null){
+				JOptionPane.showMessageDialog(this, "Please select a Workshop");
+			}
+				
+		}else if(event.getSource()==btnViewParticipant){
+			int IndexofWorkshop=WorkshopComboBox.getSelectedIndex();
+			Workshop selectedWorkshop=controller.getWorkshop(IndexofWorkshop);
+			if(selectedWorkshop==null){
+				JOptionPane.showMessageDialog(this, "No workshop Selected");
+			}else{	
+				ParticipantList participantlist=controller.getParticipantList(selectedWorkshop);
+				if(participantlist.getParticipantListSize()==0){			
+					JOptionPane.showMessageDialog(this, "The list is empty");					
+				}else{
+					for(int i=0;i<participantlist.getParticipantListSize();i++){
+						
+						JOptionPane.showMessageDialog(this, participantlist.getParticipant(i).getName());
+					}
+				}
+			}
+		}else{
+			int IndexofWorkshop=WorkshopComboBox.getSelectedIndex();
+			Workshop selectedWorkshop=controller.getWorkshop(IndexofWorkshop);
 			String ParticipantName=txtParticipantname.getText();
 			String ParticipantIC=txtParticipantIC.getText();
-				
-			if(selectedWorkshop!=null){
-				if(ParticipantName.equals("") && ParticipantIC.equals("")){
-					JOptionPane.showMessageDialog(this, "Please fill in the name / IC of the participant");
-					
-				}else{
-					controller.registerParticipant(ParticipantName,ParticipantIC);
-	
-				}
+			if(selectedWorkshop==null){
+				JOptionPane.showMessageDialog(this, "No workshop Selected");
 			}else{
-				JOptionPane.showMessageDialog(this,"Please Select a Workshop");
+				if(ParticipantName.equals("")&& ParticipantIC.equals("") || selectedWorkshop==null){
+					if(selectedWorkshop==null){
+						JOptionPane.showMessageDialog(this, "Please select a Workshop");
+					}else{
+						JOptionPane.showMessageDialog(this, "Please enter name / IC");
+					}		
+				}else{
+					controller.registerParticipant(ParticipantName, ParticipantIC, selectedWorkshop);
+					JOptionPane.showMessageDialog(this, "Participant added to " + selectedWorkshop.getName());
+				}
+				
 			}
 		}
-		
-			
-		
 	}
 	
 	public static void main(String[] args) {
@@ -214,7 +245,7 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 				e.printStackTrace();
 			}
 		}//end of run
-		});//end of eventqueue
+		});
 	} 
 	
 	

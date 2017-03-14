@@ -38,5 +38,9 @@ public class WorkshopList {
 		
 		return null;
 	}
+	
+	public Workshop getSelectedWorkshop(int i){
+		return workshoplist.get(i);
+	}
 
 }
