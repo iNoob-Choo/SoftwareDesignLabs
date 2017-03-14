@@ -206,13 +206,10 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 				if(participantlist.getParticipantListSize()==0){			
 					JOptionPane.showMessageDialog(this, "The list is empty");					
 				}else{
-					String output="";
 					for(int i=0;i<participantlist.getParticipantListSize();i++){
-					  String everything=participantlist.getParticipant(i).getName();
-					  output+=everything + "\n";
 						
+						JOptionPane.showMessageDialog(this, participantlist.getParticipant(i).getName());
 					}
-					JOptionPane.showMessageDialog(this,output);
 				}
 			}
 		}else{
