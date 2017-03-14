@@ -5,6 +5,7 @@ import javax.swing.*;
 import workshopapp.domain.*;
 
 
+@SuppressWarnings("serial")
 public class WorkshopAppGUI extends JFrame implements ActionListener {
 
 	//Controller Object
@@ -16,6 +17,8 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 	private JLabel lblParticipantname;
 	private JLabel lblWorkshopdate;
 	private JLabel lblParticipantIC;
+	private JLabel lblWorkshopSelected;
+	private JLabel lblTheWorkshopSelected;
 	
 	//Text Fields for Workshop
 	private JTextField txtWorkshopname;
@@ -40,6 +43,8 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 		lblWorkshopdate=new JLabel("Workshop Date: ");
 		lblParticipantname=new JLabel("Participant Name: ");
 		lblParticipantIC=new JLabel("Participant IC No : ");
+		lblWorkshopSelected=new JLabel("Workshop Selected: ");
+		lblTheWorkshopSelected=new JLabel(" No Workshop Selected");
 		
 		txtWorkshopname=new JTextField(20);
 		txtWorkshopdate=new JTextField(10);
@@ -65,6 +70,7 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 						GroupLayout.Alignment.LEADING)
 				 .addComponent(lblWorkshopname)
 				 .addComponent(lblWorkshopdate)
+				 .addComponent(lblWorkshopSelected)
 				 .addComponent(lblParticipantname)
 				 .addComponent(lblParticipantIC)
 						)//
@@ -74,6 +80,7 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 				 .addComponent(txtWorkshopname, 200, 200, 200) // min, preferred, max 
 				 .addComponent(txtWorkshopdate,200,200,200)
 				 .addComponent(btnSearchWorkshop)
+				 .addComponent(lblTheWorkshopSelected)
 				 .addComponent(txtParticipantname,200,200,200)
 				 .addComponent(txtParticipantIC,200,200,200)
 						 )//
@@ -104,6 +111,10 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 		
 				 )//
 		 .addComponent(btnSearchWorkshop)
+		 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+				 .addComponent(lblWorkshopSelected)
+				 .addComponent(lblTheWorkshopSelected)
+				 )	 
 		 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 				.addComponent(lblParticipantname)
 				.addComponent(txtParticipantname)	 
@@ -158,6 +169,7 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 			
 			if(workshop!=null){
 				JOptionPane.showMessageDialog(this,"Workshop is on: "+workshop.getDate());
+				lblTheWorkshopSelected.setText(workshop.getName());
 			}else{
 				JOptionPane.showMessageDialog(this,"Workshop doesnt exist yet");
 			}
