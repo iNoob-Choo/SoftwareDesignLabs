@@ -35,7 +35,7 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 	private JButton btnSelectWorkshop;
 	
 	//Combo Box
-	private JComboBox<String> WorkshopComboBox;
+	private JComboBox<Workshop> WorkshopComboBox;
 	
 	public WorkshopAppGUI(){
 		//Set up controller;
@@ -58,7 +58,7 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 		btnSearchWorkshop=new JButton("Search Workshop");
 		btnSelectWorkshop=new JButton("Select Workshop");
 		
-		WorkshopComboBox=new JComboBox<String>();
+		WorkshopComboBox=new JComboBox();
 		
 		//Layout of the components
 		JPanel content=new JPanel();
@@ -166,7 +166,7 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 			}else{
 				Workshop workshop=controller.addWorkshop(Workshopname, Workshopdate);
 				JOptionPane.showMessageDialog(this, "Workshop Added");
-				WorkshopComboBox.addItem(workshop.getName());
+				WorkshopComboBox.addItem(workshop);
 			}
 			
 			
@@ -182,24 +182,18 @@ public class WorkshopAppGUI extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(this,"Workshop doesnt exist yet");
 			}
 		  }//end of search if
-		}else if(event.getSource()==btnSelectWorkshop){
-			Workshop selectedWorkshop=(Workshop) WorkshopComboBox.getSelectedItem();
+		}else{
 			String ParticipantName=txtParticipantname.getText();
 			String ParticipantIC=txtParticipantIC.getText();
+			
+			if(ParticipantName.equals("") && ParticipantIC.equals("")){
+				JOptionPane.showMessageDialog(this, "Please fill in the name / IC of the participant");
 				
-			if(selectedWorkshop!=null){
-				if(ParticipantName.equals("") && ParticipantIC.equals("")){
-					JOptionPane.showMessageDialog(this, "Please fill in the name / IC of the participant");
-					
-				}else{
-					controller.registerParticipant(ParticipantName,ParticipantIC);
-	
-				}
 			}else{
-				JOptionPane.showMessageDialog(this,"Please Select a Workshop");
+				controller.registerParticipant(ParticipantName,ParticipantIC);
+
 			}
 		}
-		
 			
 		
 	}
