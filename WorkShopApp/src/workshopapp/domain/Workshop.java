@@ -4,7 +4,6 @@ public class Workshop {
 	
 	private String name;
 	private String date;
-	private int workshopSize=50;
 	private ParticipantList participantlist=new ParticipantList();
 	
 	public String getName() {
@@ -23,12 +22,6 @@ public class Workshop {
 	public Workshop(String name,String date){
 		this.name=name;
 		this.date=date;
-	}
-	public int getWorkshopSize() {
-		return workshopSize;
-	}
-	public void setWorkshopSize(int workshopSize) {
-		this.workshopSize = workshopSize;
 	}
 	
 	public void addPartipantToThisWorkshop(Participant participant){
