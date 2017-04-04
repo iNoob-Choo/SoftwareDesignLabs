@@ -1,0 +1,49 @@
+package my.utar.edu;
+
+public abstract class Staff {
+	protected int monthlySalary;
+
+	public int getMonthlySalary() {
+		return monthlySalary;
+	}
+
+	public abstract int calculateBonus();
+
+	public abstract void showRemainingLeave(int daysApplied);
+}
+
+public class AdminStaff extends Staff {
+	public AdminStaff(int monthlySalary) {
+		setMonthlySalary(monthlySalary);
+	}
+
+	private void setMonthlySalary(int monthlySalary) {
+		this.monthlySalary = monthlySalary;
+	}
+
+	public int calculateBonus() {
+		return 2 * monthlySalary;
+	}
+
+	public void showRemainingLeave(int daysApplied) {
+		System.out.println("Leave remaining is : " + (20 - daysApplied) + " days");
+	}
+}
+
+public class ManagementStaff extends Staff {
+	public ManagementStaff(int monthlySalary) {
+		setMonthlySalary(monthlySalary);
+	}
+
+	private void setMonthlySalary(int monthlySalary) {
+		this.monthlySalary = monthlySalary;
+	}
+
+	public int calculateBonus() {
+		return 3 * monthlySalary;
+	}
+
+	public void showRemainingLeave(int daysApplied) {
+		System.out.println("Leave remaining is : " + (30 - daysApplied) + " days");
+	}
+}

@@ -1,0 +1,20 @@
+package my.utar.edu;
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class Program {
+	public static void main(String[] args) {
+		List<PersonalDetails> personList = new ArrayList<PersonalDetails>();
+		AdminStaff adam = new AdminStaff(2000);
+		ManagementStaff peter = new ManagementStaff(3000);
+		AdminStaff mary = new AdminStaff(4000);
+		personList.add(adam);
+		personList.add(peter);
+		personList.add(mary);
+		for (PersonalDetails pd : personList) {
+			System.out.println("Monthly bonus is " + pd.calculateBonus());
+			pd.showRemainingLeave(15);
+		}
+	}
+}

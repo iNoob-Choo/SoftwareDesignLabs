@@ -1,0 +1,19 @@
+package my.utar.edu;
+
+public class SalesStaffAdapter extends PersonalDetails{
+
+	
+	@Override
+	public int calculateBonus() {
+		// TODO Auto-generated method stub
+		
+		return 0;
+	}
+
+	@Override
+	public void showRemainingLeave(int daysApplied) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
