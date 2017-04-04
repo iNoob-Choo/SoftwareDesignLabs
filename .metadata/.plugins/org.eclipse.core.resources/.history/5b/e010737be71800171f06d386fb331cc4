@@ -9,6 +9,9 @@ abstract class ApartmentOptions implements IApartment{
 		tempApartment=apart;
 	}
 	
-
+	
+	public int getPrice(){
+		return tempApartment.getPrice();
+	}
 	
 }

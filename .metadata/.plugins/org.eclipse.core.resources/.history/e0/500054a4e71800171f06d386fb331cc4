@@ -10,6 +10,6 @@ public class ApartmentWithKLCC extends ApartmentOptions {
 	}
 
 	public int getPrice(){
-		return tempApartment.getPrice() +15000;
+		return tempApartment.getPrice() +1500;
 	}
 }
