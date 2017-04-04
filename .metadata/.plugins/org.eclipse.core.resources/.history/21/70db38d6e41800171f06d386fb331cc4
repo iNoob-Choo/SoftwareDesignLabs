@@ -1,0 +1,13 @@
+package my.utar.edu;
+
+public class ApartmentWithKLCC extends ApartmentOptions {
+
+	public ApartmentWithKLCC(int aptNumber) {
+		super(aptNumber);
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getPrice(){
+		return tempApartment.getPrice() +1500;
+	}
+}

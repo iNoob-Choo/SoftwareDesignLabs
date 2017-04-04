@@ -1,0 +1,16 @@
+package my.utar.edu;
+
+abstract class ApartmentOptions extends AbstractApartment{
+
+	protected AbstractApartment tempApartment;
+	
+	public ApartmentOptions(int aptNumber) {
+		super(aptNumber);
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getPrice(){
+		return tempApartment.getPrice();
+	}
+	
+}

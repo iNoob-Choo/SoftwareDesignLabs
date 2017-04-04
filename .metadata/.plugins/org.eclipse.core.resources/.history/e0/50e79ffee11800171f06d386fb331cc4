@@ -1,0 +1,14 @@
+package my.utar.edu;
+
+public class ApartmentWithGarden extends ApartmentOptions {
+
+	public ApartmentWithGarden(int aptNumber) {
+		super(aptNumber);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public int getPrice(){
+		return tempApartment.getPrice()+5000;
+	}
+}

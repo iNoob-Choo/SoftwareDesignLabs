@@ -1,0 +1,13 @@
+package my.utar.edu;
+
+abstract class ApartmentOptions implements IApartment{
+
+
+
+	
+	
+	public int getPrice(){
+		return tempApartment.getPrice();
+	}
+	
+}

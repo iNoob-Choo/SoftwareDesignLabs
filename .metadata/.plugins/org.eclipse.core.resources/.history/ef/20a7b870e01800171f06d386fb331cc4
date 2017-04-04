@@ -1,0 +1,10 @@
+package my.utar.edu;
+
+abstract class ApartmentOptions extends AbstractApartment{
+
+	public ApartmentOptions(int aptNumber) {
+		super(aptNumber);
+		
+	}
+	
+}

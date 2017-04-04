@@ -1,0 +1,25 @@
+package my.utar.edu;
+
+public class ApartmentPriceCalculator {
+	
+	public static void main(String[] args){
+		
+		SmallApartment smallapt=new SmallApartment(1111);
+		
+		ApartmentOptions withGarden=new ApartmentWithGarden(smallapt);
+		
+		System.out.println(withGarden.getPrice());
+		
+	
+		
+		
+		
+
+		
+		
+		
+		
+		
+	}
+
+}
